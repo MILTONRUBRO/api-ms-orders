@@ -62,11 +62,15 @@ public class OrderRepositoryGateway implements OrderGateway {
         addItens(orderEntity);
         log.info("Order with ID {} created successfully!", orderId);
         
-        
+        addPayment(orderEntity);
         return orderEntityMapper.toDomainObj(orderEntity);
     }
 
-    @Override
+    private void addPayment(OrderEntity orderEntity) {
+		
+	}
+
+	@Override
     public void updateOrderStatus(Long idOrder, String status) {
         Optional<OrderEntity> optionalOrder = orderRepository.findById(idOrder);
         if (!optionalOrder.isPresent()) {

@@ -20,22 +20,17 @@ public class ItemOrderService {
 	
     public List<ItemOrderEntity> criarItensOrderMockados(OrderEntity orderEntity) {
         List<ItemOrderEntity> itensOrder = new ArrayList<>();
-        ItemOrderEntity item = new ItemOrderEntity();
-       
         
-       // ProductEntity produto = ProductService.criarProdutoMockado();
-        
-       ProductEntity produto = productRepository.findById(1L).orElseGet(() -> new ProductEntity());
-                        
-      // item.setId(1L);
-       item.setProduto(produto);
+       ItemOrderEntity item = new ItemOrderEntity();
+                               
+       item.setId(1L);
        item.setQuantity(1);
        item.setTotalValue(BigDecimal.valueOf(45,99));
        item.setOrder(orderEntity);
         
        itensOrder.add(item);
         
-        return itensOrder;
+       return itensOrder;
     }
 	
 

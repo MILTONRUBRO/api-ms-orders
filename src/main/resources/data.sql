@@ -1,10 +1,13 @@
-INSERT INTO category (id, name) VALUES 
+MERGE INTO category (id, name) 
+KEY(id) 
+VALUES 
 (1, 'Hambúrgueres'),
 (2, 'Bebidas'),
 (3, 'Acompanhamentos');
 
-
-INSERT INTO product (id, name, description, price, category_id) VALUES
+MERGE INTO product (id, name, description, price, category_id) 
+KEY(id) 
+VALUES
 (1, 'Cheeseburger', 'Delicioso cheeseburger com alface, tomate e queijo', 5.99, 1),
 (2, 'Sanduíche de Frango', 'Sanduíche de frango crocante com picles e maionese', 6.49, 1),
 (3, 'Hambúrguer Vegano', 'Saboroso hambúrguer vegano com abacate e espinafre', 6.99, 1),
