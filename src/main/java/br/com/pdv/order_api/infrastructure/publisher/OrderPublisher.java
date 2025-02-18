@@ -22,7 +22,7 @@ public class OrderPublisher {
     private final ObjectMapper objectMapper;
 
     private static final String EXCHANGE_NAME = "queue.orders";
-    private static final String ROUTING_KEY = "queue.orders";  
+    private static final String ROUTING_KEY = "queue.orders";
 
     public void publishOrder(List<OrdersResponse> ordersResponses) {
         try {
