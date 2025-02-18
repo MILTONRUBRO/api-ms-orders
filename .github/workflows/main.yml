@@ -105,7 +105,7 @@ jobs:
           SONAR_ORG: miltonrubro
         run: |
           mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=MILTONRUBRO/api-ms-orders \
+            -Dsonar.projectKey=MILTONRUBRO_api-ms-orders \
             -Dsonar.organization=${{ secrets.SONAR_ORG }} \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
@@ -120,7 +120,7 @@ jobs:
 
       - name: SonarQube Quality Gate Check
         run: |
-          sonar_status=$(curl -s -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/qualitygates/project_status?projectKey=MILTONRUBRO/api-ms-orders")
+          sonar_status=$(curl -s -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/qualitygates/project_status?projectKey=MILTONRUBRO_api-ms-orders")
           
           quality_gate_status=$(echo $sonar_status | jq -r '.projectStatus.status')
           
