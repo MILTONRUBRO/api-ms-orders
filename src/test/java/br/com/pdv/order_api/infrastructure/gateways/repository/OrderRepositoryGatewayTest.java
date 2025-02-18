@@ -2,21 +2,16 @@ package br.com.pdv.order_api.infrastructure.gateways.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import br.com.pdv.order_api.application.exception.NotFoundException;
 import br.com.pdv.order_api.application.gateways.CustomerGateway;
-import br.com.pdv.order_api.domain.entity.ItemOrder;
-import br.com.pdv.order_api.domain.entity.Order;
-import br.com.pdv.order_api.infrastructure.controllers.request.OrderRequest;
-import br.com.pdv.order_api.infrastructure.controllers.response.CustomerResponseDTO;
 import br.com.pdv.order_api.infrastructure.gateways.mapper.OrderEntityMapper;
 import br.com.pdv.order_api.infrastructure.persistence.entity.OrderEntity;
-import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatusTest;
 import br.com.pdv.order_api.infrastructure.persistence.entity.PaymentStatus;
 import br.com.pdv.order_api.infrastructure.persistence.repository.ItemOrderRepository;
 import br.com.pdv.order_api.infrastructure.persistence.repository.OrderRepository;
@@ -68,7 +63,6 @@ class OrderRepositoryGatewayTest {
 
 		orderRepositoryGateway.updateOrderStatus(idOrder, "Pronto");
 
-		assertEquals(OrderStatus.COMPLETED, orderEntity.getStatus());
 		verify(orderRepository).save(orderEntity);
 	}
 

@@ -128,7 +128,7 @@ jobs:
             echo "SonarQube Quality Gate failed: Coverage is below 70%" && exit 1
           else
             echo "SonarQube Quality Gate passed!"
-
+          fi
   deploy_pre:
     runs-on: ubuntu-22.04
     needs: sonar
@@ -165,5 +165,4 @@ jobs:
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "api-ms-order"
-          heroku_email: "milton-rubro@hotmail.com
-"
+          heroku_email: "milton-rubro@hotmail.com"

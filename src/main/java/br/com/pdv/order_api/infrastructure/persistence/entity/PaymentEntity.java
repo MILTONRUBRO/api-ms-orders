@@ -17,7 +17,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "payments")
 public class PaymentEntity {

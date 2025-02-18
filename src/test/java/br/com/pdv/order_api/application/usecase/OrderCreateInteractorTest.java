@@ -2,6 +2,7 @@ package br.com.pdv.order_api.application.usecase;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
@@ -16,7 +17,7 @@ import br.com.pdv.order_api.application.gateways.OrderGateway;
 import br.com.pdv.order_api.domain.entity.ItemOrder;
 import br.com.pdv.order_api.domain.entity.Order;
 import br.com.pdv.order_api.infrastructure.controllers.request.OrderRequest;
-import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatusTest;
 
 class OrderCreateInteractorTest {
 
@@ -34,8 +35,8 @@ class OrderCreateInteractorTest {
 	@Test
 	void testCreateOrder() {
 		OrderRequest orderRequest = new OrderRequest("123");
-		
-        OrderStatus status = OrderStatus.RECEIVED;
+
+		OrderStatus status = OrderStatus.RECEIVED;
         List<ItemOrder> itemsOrder = List.of();
 
         Order order = new Order(

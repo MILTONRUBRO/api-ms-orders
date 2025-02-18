@@ -5,17 +5,17 @@ import br.com.pdv.order_api.domain.entity.ItemOrder;
 import br.com.pdv.order_api.domain.entity.Order;
 import br.com.pdv.order_api.infrastructure.controllers.request.OrderRequest;
 import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatusTest;
 import io.cucumber.java.en.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
-import java.net.URI;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
