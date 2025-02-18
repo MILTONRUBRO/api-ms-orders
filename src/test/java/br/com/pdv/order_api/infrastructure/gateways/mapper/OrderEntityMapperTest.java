@@ -5,12 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDateTime;
 
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.pdv.order_api.domain.entity.Order;
 import br.com.pdv.order_api.infrastructure.persistence.entity.OrderEntity;
-import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatusTest;
 
 class OrderEntityMapperTest {
 
@@ -26,7 +27,7 @@ class OrderEntityMapperTest {
 			OrderEntity orderEntity = new OrderEntity();
 			orderEntity.setId(1L);
 			orderEntity.setData(LocalDateTime.now());
-			orderEntity.setStatus(OrderStatus.PROCESSING);
+			orderEntity.setStatus(OrderStatus.FINALIZED);
 			orderEntity.setTotalValue(100.0);
 			orderEntity.setClientDocument("123456789");
 

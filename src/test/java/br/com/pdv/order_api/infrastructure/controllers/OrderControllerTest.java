@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +23,7 @@ import br.com.pdv.order_api.domain.entity.ItemOrder;
 import br.com.pdv.order_api.domain.entity.Order;
 import br.com.pdv.order_api.infrastructure.controllers.request.OrderRequest;
 import br.com.pdv.order_api.infrastructure.controllers.request.UpdateOrderStatusRequest;
-import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatusTest;
 
 class OrderControllerTest {
 
