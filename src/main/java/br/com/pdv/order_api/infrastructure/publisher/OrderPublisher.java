@@ -21,8 +21,8 @@ public class OrderPublisher {
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
 
-    private static final String EXCHANGE_NAME = "queue.orders";  // Nome da exchange
-    private static final String ROUTING_KEY = "queue.orders";  // Chave de roteamento
+    private static final String EXCHANGE_NAME = "queue.orders";
+    private static final String ROUTING_KEY = "queue.orders";  
 
     public void publishOrder(List<OrdersResponse> ordersResponses) {
         try {
