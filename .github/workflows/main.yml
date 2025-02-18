@@ -165,5 +165,4 @@ jobs:
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "api-ms-order"
-          heroku_email: "milton-rubro@hotmail.com
-"
+          heroku_email: "milton-rubro@hotmail.com"
