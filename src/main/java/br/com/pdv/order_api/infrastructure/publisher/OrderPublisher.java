@@ -1,6 +1,7 @@
 package br.com.pdv.order_api.infrastructure.publisher;
 
 import br.com.pdv.order_api.infrastructure.controllers.response.OrdersResponse;
+import br.com.pdv.order_api.infrastructure.gateways.mapper.OrderMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +26,9 @@ public class OrderPublisher {
 
     public void publishOrder(List<OrdersResponse> ordersResponses) {
         try {
-            // Converte o objeto em uma string JSON
-            String message = objectMapper.writeValueAsString(ordersResponses);
-
-            // Envia a mensagem para a exchange com a chave de roteamento
+            OrderMapper mapper = new OrderMapper();
+            List<br.com.pdv.order_api.infrastructure.controllers.response.OrderPublisher> orderPublishers = mapper.mapToOrderPublishers(ordersResponses);
+            String message = objectMapper.writeValueAsString(orderPublishers.get(0));
             rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, message);
 
             logger.info("🚀 Pedido publicado com sucesso: {}", message);
