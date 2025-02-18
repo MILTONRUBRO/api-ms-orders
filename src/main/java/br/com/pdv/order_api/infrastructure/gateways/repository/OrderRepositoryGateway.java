@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import br.com.pdv.order_api.infrastructure.publisher.OrderPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,11 @@ public class OrderRepositoryGateway implements OrderGateway {
     
     @Autowired
     private ItemOrderRepository itemOrderRepository;
+
+    @Autowired
+    private OrderPublisher orderPublisher;
+
+
     
 
     @Override
@@ -117,8 +123,13 @@ public class OrderRepositoryGateway implements OrderGateway {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void publishProductionOrder(List<OrdersResponse> ordersResponses ) {
+        this.orderPublisher.publishOrder(ordersResponses);
+    }
 
-   private CustomerResponseDTO findOrCreateCustomer(OrderRequest request) {
+
+    private CustomerResponseDTO findOrCreateCustomer(OrderRequest request) {
         return customerGateway.findByDocumentForOrder(request.documentNumber())
                .orElseGet(() -> new CustomerResponseDTO());
    }
@@ -135,6 +146,7 @@ public class OrderRepositoryGateway implements OrderGateway {
     
     private void addItens(OrderEntity orderEntity) {
     	List<ItemOrderEntity> listaItens = itemOrderService.criarItensOrderMockados(orderEntity);
+        orderEntity.setItens(listaItens);
     	itemOrderRepository.saveAll(listaItens);
     
     }

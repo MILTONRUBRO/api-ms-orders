@@ -12,5 +12,5 @@ public interface OrderGateway {
     void updateOrderPayments(Long idOrder, String status);
     String getOrderPaymentSatus(Long idOrder);
     List<OrdersResponse> getAllOrdersOrdenedInteractor();
-
+    void publishProductionOrder(List<OrdersResponse> ordersResponses);
 }
