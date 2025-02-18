@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import br.com.pdv.order_api.application.gateways.OrderGateway;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UpdateOrderStatusInteractor {
@@ -16,7 +17,7 @@ public class UpdateOrderStatusInteractor {
 
 	public void updateOrderStatus(Long idOrder, String status) {
 		orderGateway.updateOrderStatus(idOrder, status);
-		List<OrdersResponse>productionOrders = orderGateway.getAllOrdersOrdenedInteractor();
+		List<OrdersResponse>productionOrders = orderGateway.getAllOrdersOrdenedInteractor(Optional.of(idOrder));
 		orderGateway.publishProductionOrder(productionOrders);
 	}
 

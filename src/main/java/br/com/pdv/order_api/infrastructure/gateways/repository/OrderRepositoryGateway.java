@@ -1,6 +1,7 @@
 package br.com.pdv.order_api.infrastructure.gateways.repository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -133,14 +134,22 @@ public class OrderRepositoryGateway implements OrderGateway {
 	}
 
     @Override
-    public List<OrdersResponse> getAllOrdersOrdenedInteractor() {
-        List<OrderEntity> orders = orderRepository.findByStatusNot(OrderStatus.FINALIZED);
+    public List<OrdersResponse> getAllOrdersOrdenedInteractor(Optional<Long> idOrder) {
+        List<OrderEntity> orders =new ArrayList<>();
+        if (idOrder.isPresent()) {
+            Optional<OrderEntity>order = orderRepository.findById(idOrder.get());
+            orders.add(order.get());
+        } else {
+            orders = orderRepository.findByStatusNot(OrderStatus.FINALIZED);
+        }
         return orders.stream()
                 .sorted(Comparator.comparing(this::getPriority)
                         .thenComparing(OrderEntity::getData))
                 .map(orderEntityMapper::toResponse)
                 .collect(Collectors.toList());
     }
+
+
 
     @Override
     public void publishProductionOrder(List<OrdersResponse> ordersResponses ) {

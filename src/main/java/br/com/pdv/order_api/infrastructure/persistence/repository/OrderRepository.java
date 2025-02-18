@@ -19,4 +19,7 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     List<OrderEntity> findByStatusNot(OrderStatus status);
 
+    List<OrderEntity> findByIdAndStatusNot(Long id, OrderStatus status);
+
+
 }
