@@ -138,14 +138,14 @@ jobs:
 
       - name: Configurar variáveis no Heroku
         run: |
-          heroku config:set RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }} --app api-ms-orders
+          heroku config:set RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }} --app api-ms-order
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "api-ms-orders"
+          heroku_app_name: "api-ms-order"
           heroku_email: "milton-rubro@hotmail.com"
 
   deploy_prod:
@@ -157,13 +157,13 @@ jobs:
 
       - name: Configurar variáveis no Heroku
         run: |
-          heroku config:set RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }} --app api-ms-orders
+          heroku config:set RABBITMQ_PASSWORD=${{ secrets.RABBITMQ_PASSWORD }} --app api-ms-order
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - uses: akhileshns/heroku-deploy@v3.13.15
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "api-ms-orders"
+          heroku_app_name: "api-ms-order"
           heroku_email: "milton-rubro@hotmail.com
 "
