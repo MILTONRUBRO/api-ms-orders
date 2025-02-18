@@ -37,10 +37,8 @@ public class OrderEntity {
     private Double totalValue;
     
     private String clientDocument;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<PaymentEntity> payments;
-
+    
+    private String idPayment;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemOrderEntity> itens;

@@ -23,7 +23,6 @@ public class ItemOrderService {
         
        ItemOrderEntity item = new ItemOrderEntity();
                                
-       item.setId(1L);
        item.setQuantity(1);
        item.setTotalValue(BigDecimal.valueOf(45,99));
        item.setOrder(orderEntity);

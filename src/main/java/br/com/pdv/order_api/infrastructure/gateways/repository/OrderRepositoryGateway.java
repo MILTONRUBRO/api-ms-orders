@@ -15,16 +15,20 @@ import br.com.pdv.order_api.application.gateways.OrderGateway;
 import br.com.pdv.order_api.domain.entity.ItemOrder;
 import br.com.pdv.order_api.domain.entity.Order;
 import br.com.pdv.order_api.infrastructure.controllers.request.OrderRequest;
+import br.com.pdv.order_api.infrastructure.controllers.request.PaymentRequest;
 import br.com.pdv.order_api.infrastructure.controllers.response.CustomerResponseDTO;
 import br.com.pdv.order_api.infrastructure.controllers.response.OrdersResponse;
+import br.com.pdv.order_api.infrastructure.controllers.response.PaymentResponse;
 import br.com.pdv.order_api.infrastructure.gateways.mapper.OrderEntityMapper;
 import br.com.pdv.order_api.infrastructure.persistence.entity.ItemOrderEntity;
 import br.com.pdv.order_api.infrastructure.persistence.entity.OrderEntity;
 import br.com.pdv.order_api.infrastructure.persistence.entity.OrderStatus;
+import br.com.pdv.order_api.infrastructure.persistence.entity.PaymentMethod;
 import br.com.pdv.order_api.infrastructure.persistence.entity.PaymentStatus;
 import br.com.pdv.order_api.infrastructure.persistence.repository.ItemOrderRepository;
 import br.com.pdv.order_api.infrastructure.persistence.repository.OrderRepository;
 import br.com.pdv.order_api.infrastructure.services.ItemOrderService;
+import br.com.pdv.order_api.infrastructure.services.PaymentService;
 import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 
@@ -49,6 +53,9 @@ public class OrderRepositoryGateway implements OrderGateway {
     @Autowired
     private ItemOrderRepository itemOrderRepository;
     
+    @Autowired
+    private PaymentService paymnetService;
+    
 
     @Override
     @Transactional
@@ -67,7 +74,19 @@ public class OrderRepositoryGateway implements OrderGateway {
     }
 
     private void addPayment(OrderEntity orderEntity) {
+    	
+    	PaymentRequest paymentRequest = PaymentRequest.builder()
+		    	.amount(orderEntity.getTotalValue())
+		    	.status(PaymentStatus.REFUSED.getStatus())
+		    	.order_id(String.valueOf(orderEntity.getId()))
+		    	.payment_type(PaymentMethod.PIX.getPaymentType())
+		    	.build();
 		
+    	PaymentResponse paymentReponse = paymnetService.makePayment(paymentRequest);
+    	
+    	orderEntity.setIdPayment(paymentReponse.getUuid());
+    	
+    	orderRepository.save(orderEntity);
 	}
 
 	@Override
